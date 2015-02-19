@@ -1,0 +1,43 @@
+th {
+    padding-left:10px;
+    padding-right:10px;
+    text-align: center;
+}
+
+td {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: center;
+}
+
+#masterContainer{
+    width:45%;
+    float:left;
+    height:100vh;
+}
+
+#edit_recordContainer{
+    padding-top:1%;
+}
+
+.formContainers{  
+    width:75%;
+    padding-top: 10%;
+}
+
+#data{
+    height:90vh;
+    width:45%;
+    float:left;
+}
+
+fieldset{
+    text-align: left;
+    display:inline;
+}
+
+.tableForms{
+    width:45%;
+}
