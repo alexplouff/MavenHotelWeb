@@ -50,6 +50,7 @@ public class ViewAllHotelsController extends HttpServlet {
             Logger.getLogger(ViewAllHotelsController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        
         RequestDispatcher view = request.getRequestDispatcher(RESULT_PAGE);
         view.forward(request, response);
     }

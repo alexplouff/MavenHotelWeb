@@ -80,7 +80,7 @@ public class EditRecordsController extends HttpServlet {
         processRequest(request, response);
         
         RequestDispatcher view
-                = request.getRequestDispatcher("/hc");
+                = request.getRequestDispatcher(response.encodeURL(RESULT_PAGE));
         view.forward(request, response);
 
     }

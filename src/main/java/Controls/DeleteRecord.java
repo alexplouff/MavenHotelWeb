@@ -48,8 +48,9 @@ public class DeleteRecord extends HttpServlet {
         }
         
                 
-        RequestDispatcher view = request.getRequestDispatcher("/hc");
-        view.forward(request, response);
+  //      RequestDispatcher view = request.getRequestDispatcher("/hc");
+        response.sendRedirect("index.html");
+   //     view.forward(request, response);
         
     }
 

@@ -53,7 +53,7 @@ public class CreateRecordController extends HttpServlet {
         }
         
         
-        
+//        response.sendRedirect("hc");
         RequestDispatcher view = request.getRequestDispatcher(RESULT_PAGE);
         view.forward(request, response);
         

@@ -6,6 +6,17 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<%
+
+    Object tableData = request.getAttribute("list");
+    if(tableData == null){
+        response.sendRedirect("index.jsp");
+        out.print("No Data Available");
+    }
+
+%>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
