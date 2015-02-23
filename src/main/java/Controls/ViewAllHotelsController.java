@@ -41,6 +41,7 @@ public class ViewAllHotelsController extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
         
+        
         HotelService hs = new HotelService( new HotelDAO() );
         List list = null;
         try {
@@ -51,7 +52,7 @@ public class ViewAllHotelsController extends HttpServlet {
         }
         
         
-        RequestDispatcher view = request.getRequestDispatcher(RESULT_PAGE);
+        RequestDispatcher view = request.getRequestDispatcher(response.encodeURL(RESULT_PAGE));
         view.forward(request, response);
     }
 

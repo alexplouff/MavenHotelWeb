@@ -11,7 +11,7 @@
 
     Object tableData = request.getAttribute("list");
     if(tableData == null){
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("errorPage.jsp");
         out.print("No Data Available");
     }
 
@@ -27,6 +27,7 @@
     </head>
 
     <body>
+        <div id="login"><fieldset>Logged In as ${login}</fieldset></div>
         <table id="data">
             <thead>
             <th>Hotel ID</th>
