@@ -11,6 +11,7 @@
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css.css">
+        
         <title>JSP Page</title>
     </head>
     <body>
@@ -18,9 +19,7 @@
 
         <h1 style="text-align:center;"> Welcome - What would you like to do? </h1>
 
-        <a href="hc">View All Records</a>
-
-        <form id="login" name="login" method="POST" action="hpc" >
+        <form id="login" name="login" method="POST" action="crud" >
             <fieldset>
 
                 <table>
@@ -39,8 +38,12 @@
                 <a href="view_records.jsp"></a>
             </fieldset>
         </form>
-
+        
+        
+        
+        <script src="js.js" type="text/javascript" />
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        
     </body>
 </html>
 </html>

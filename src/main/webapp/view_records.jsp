@@ -7,16 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<%
-
-    Object tableData = request.getAttribute("list");
-    if(tableData == null){
-        response.sendRedirect("errorPage.jsp");
-        out.print("No Data Available");
-    }
-
-%>
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -27,7 +17,8 @@
     </head>
 
     <body>
-        <div id="login"><fieldset>Logged In as ${login}</fieldset></div>
+        <div id="login">Logged In as ${login}</div>
+        <form id="test" action="crud" method="POST" >
         <table id="data">
             <thead>
             <th>Hotel ID</th>
@@ -35,7 +26,7 @@
             <th>Hotel Street</th>
             <th>Hotel City</th>
             <th>Hotel State</th>
-        </thead>
+            </thead>
         <tbody>
             <c:forEach var="hotel" items="${list}" >
                 <tr>
@@ -44,16 +35,17 @@
                     <td>${hotel.street}</td>
                     <td>${hotel.city}</td>
                     <td>${hotel.state}</td>
+                    <td><a href="crud?id=${hotel.hotel_id}">Delete</a>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
-
+        </form>
     <!-- Form To Edit A Record -->    
     <div id="masterContainer">
         
         <div id="edit_recordContainer" class="formContainers">
-            <form id="edit_record" name="edit_record" method="POST" action="editRec">
+            <form id="edit_record" name="edit_record" method="POST" action="crud">
                 <fieldset>
                     <legend>Edit Record</legend>
 
@@ -82,24 +74,10 @@
             </form>
         </div>
 
-        <!-- Form To Delete A Record -->
-
-        <div id="delete_recordContainer" class="formContainers">
-            <form id="delete" name="delete" method="POST" action="delete">
-                <fieldset>
-                    <legend>Delete Record</legend>
-                    <table class="tableForms">
-                        <tr>Which Record # To Delete: <input type="text" id="primaryKey" name="primaryKey" /></tr>
-                        <td style="padding-top:2%;"><input style="float:left;" type="submit" name="submit" id="submit" /></td>
-                    </table>
-                </fieldset>
-            </form>
-        </div> 
-
         <!-- Form To Create A Record -->
 
         <div id="create_recordContainer" class="formContainers">
-            <form id="newRecordForm" name="createForm" method="POST" action="createRec">
+            <form id="newRecordForm" name="createForm" method="POST" action="crud">
                 <fieldset>
                     <legend>Create New</legend>
                     <table>
@@ -130,6 +108,8 @@
 
 
     </div>      
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js.js" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>
