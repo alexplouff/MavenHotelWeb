@@ -19,97 +19,131 @@
     <body>
         <div id="login">Logged In as ${login}</div>
         <form id="test" action="crud" method="POST" >
-        <table id="data">
-            <thead>
-            <th>Hotel ID</th>
-            <th>Hotel Name</th>
-            <th>Hotel Street</th>
-            <th>Hotel City</th>
-            <th>Hotel State</th>
-            </thead>
-        <tbody>
-            <c:forEach var="hotel" items="${list}" >
-                <tr>
-                    <td>${hotel.hotel_id}</td>
-                    <td>${hotel.hotel_name}</td>
-                    <td>${hotel.street}</td>
-                    <td>${hotel.city}</td>
-                    <td>${hotel.state}</td>
-                    <td><a href="crud?id=${hotel.hotel_id}">Delete</a>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+            <table id="data">
+                <thead>
+                <th>Hotel ID</th>
+                <th>Hotel Name</th>
+                <th>Hotel Street</th>
+                <th>Hotel City</th>
+                <th>Hotel State</th>
+                </thead>
+                <tbody>
+                    <c:forEach var="hotel" items="${list}" >
+                        <tr>
+                            <td>${hotel.hotel_id}</td>
+                            <td>${hotel.hotel_name}</td>
+                            <td>${hotel.street}</td>
+                            <td>${hotel.city}</td>
+                            <td>${hotel.state}</td>
+                            <td><button><a href="crud?id=${hotel.hotel_id}">Delete</a></button>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
         </form>
-    <!-- Form To Edit A Record -->    
-    <div id="masterContainer">
         
-        <div id="edit_recordContainer" class="formContainers">
-            <form id="edit_record" name="edit_record" method="POST" action="crud">
-                <fieldset>
-                    <legend>Edit Record</legend>
+        <!-- Form To Edit A Record -->    
+        <div id="masterContainer">
 
-                    <table id="editRecordForm" class="tableForms" name="editRecordForm">
-                        <tr>
-                            <td>Record #:</td>
-                            <td><input type="text" id="primary_key" name="primary_key" /></td>
-                        </tr>
+            <div id="edit_recordContainer" class="formContainers">
+                <form id="edit_record" name="edit_record" method="POST" action="crud">
+                    <fieldset>
+                        <legend>Edit Record</legend>
 
-                        <tr>
-                            <td>Edit Column: </td>
-                            <td><input type="text" id="column" name="column" /></td>
-                        </tr>
+                        <table id="editRecordForm" class="tableForms" name="editRecordForm">
+                            <tr>
+                                <td>Record #:</td>
+                                <td><input type="text" id="primary_key" name="primary_key" /></td>
+                            </tr>
 
-                        <tr>
-                            <td>New Value: </td>
-                            <td><input type="text" id="value" name="value" /></td>
-                        </tr>
+                            <tr>
+                                <td>Edit Column: </td>
+                                <td><input type="text" id="column" name="column" /></td>
+                            </tr>
 
-                        <tr>
-                            <td style="text-align: center;"><input type="submit" id="submit" name ="submit" /></td>
-                        </tr>
-                    </table>
+                            <tr>
+                                <td>New Value: </td>
+                                <td><input type="text" id="value" name="value" /></td>
+                            </tr>
 
-                </fieldset>
-            </form>
-        </div>
+                            <tr>
+                                <td style="text-align: center;"><input type="submit" id="submit" name ="submit" /></td>
+                            </tr>
+                        </table>
 
-        <!-- Form To Create A Record -->
+                    </fieldset>
+                </form>
+            </div>
 
-        <div id="create_recordContainer" class="formContainers">
-            <form id="newRecordForm" name="createForm" method="POST" action="crud">
-                <fieldset>
-                    <legend>Create New</legend>
-                    <table>
-                        <tr>
-                            <td>Enter Hotel Name:</td>
-                            <td><input type="text" id="hotel_name" name="hotel_name" /></td>
-                        </tr>
-                        
-                        <tr>
-                            <td>Enter Hotel Street:</td>
-                            <td><input type="text" id="street" name="street" /></td>    
-                        </tr>
-                        
-                        <tr>
-                            <td>Enter Hotel City:</td>
-                            <td><input type="text" id="city" name="city" /></td>
-                        </tr>
-                        
-                        <tr>
-                            <td>Enter Hotel State:</td>
-                            <td><input type="text" id="state" name="state" /></td>
-                        </tr>
-                        <tr><td><input type="submit" id="submit" name ="submit" /></td></tr>
-                    </table>
-                </fieldset>
-            </form>
-        </div>
+            <!-- Form To Create A Record -->
+
+            <div id="create_recordContainer" class="formContainers">
+                <form id="newRecordForm" name="createForm" method="POST" action="crud">
+                    <fieldset>
+                        <legend>Create New</legend>
+                        <table>
+                            <tr>
+                                <td>Enter Hotel Name:</td>
+                                <td><input type="text" id="hotel_name" name="hotel_name" /></td>
+                            </tr>
+
+                            <tr>
+                                <td>Enter Hotel Street:</td>
+                                <td><input type="text" id="street" name="street" /></td>    
+                            </tr>
+
+                            <tr>
+                                <td>Enter Hotel City:</td>
+                                <td><input type="text" id="city" name="city" /></td>
+                            </tr>
+
+                            <tr>
+                                <td>Enter Hotel State:</td>
+                                <td><input type="text" id="state" name="state" /></td>
+                            </tr>
+                            <tr><td><input type="submit" id="submit" name ="submit" /></td></tr>
+                        </table>
+                    </fieldset>
+                </form>
+            </div>
 
 
-    </div>      
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="js.js" type="text/javascript"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-</body>
+            <!-- Form For Search Wizard -->
+            
+            <div id="searchWizardContainer" class="formContainers">
+                <form id="searchWizard" name="searchWizard" method="POST" action="crud">
+                    <fieldset>
+                        <legend>Search By Criteria</legend>
+                        <table> 
+
+                            <tr>
+                                <td>Search By Hotel Name: </td>
+                                <td><input type="text" id="searchByName" name="searchByName" /></td>
+                            </tr>
+
+                            <tr>
+                                <td>Search By City: </td>
+                                <td><input type="text" id="searchByCity" name="searchByCtiy" /></td>
+                            </tr>
+
+                            <tr>
+                                <td>Search By State: </td>
+                                <td><input type="text" id="searchyState" name="searchByState" /></td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="submit" id="submit" name ="submit" /></td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </form>
+
+            </div>
+
+
+
+        </div>      
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    </body>
 </html>

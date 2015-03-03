@@ -115,7 +115,7 @@ public class HotelService {
         return listOfHotelsByCity;
     }
     
-    public List getHotelsByStatew(String state){
+    public List getHotelsByState(String state){
         List listOfHotelsByState = null;
         try{
             listOfHotelsByState = dao.getHotelsByState(state);
@@ -125,4 +125,10 @@ public class HotelService {
         return listOfHotelsByState;
     }
 
+    public static void main(String[] args) {
+        
+        HotelService hs = new HotelService( new HotelDAO() );
+        System.out.println(hs.getHotelsByState("WI"));
+    }
+    
 }

@@ -6,6 +6,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Hotel;
 import models.HotelDAO;
 import models.HotelService;
 
@@ -40,10 +42,9 @@ public class CRUDController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        Object login = request.getParameter("loginID");
-        HttpSession session = request.getSession();
-        ServletContext loginID = request.getServletContext();
-
+//        String login = request.getParameter("loginID");
+//        HttpSession session = request.getSession();
+//        ServletContext loginID = request.getServletContext();
 //        if (((String) login) == null || ((String) login).length() < 2) {
 //            response.sendRedirect("errorPage.html");
 //        } else {
@@ -51,59 +52,88 @@ public class CRUDController extends HttpServlet {
 //            RequestDispatcher view = request.getRequestDispatcher(response.encodeURL("hc"));
 //            view.forward(request, response);
 //        }
-        HotelService hs = new HotelService(new HotelDAO());
-
-        // View All
-        try {
-            List list = hs.findAllHotels();
-            request.setAttribute("list", list);
-        } catch (Exception ex) {
-            ex.getLocalizedMessage();
-        }
-
-        // Delete
-        try {
-            String enteredBtn = request.getParameter("id");
-            hs.deleteRecord(enteredBtn);
-        } catch (Exception e) {
-
-        }
-
-        // edit
-        try {
-            String column = request.getParameter("column");
-            String primaryKey = request.getParameter("primary_key");
-            String value = request.getParameter("value");
-
-            hs.editRecord(column, value, primaryKey);
-
-        } catch (Exception e) {
-
-        }
-
-        // create
-        try {
-            String hotelName = request.getParameter("hotel_name");
-            String street = request.getParameter("street");
-            String city = request.getParameter("city");
-            String state = request.getParameter("state");
-            
-                RequestDispatcher view
-                = request.getRequestDispatcher(response.encodeURL(RESULT_PAGE));
-                
-            if (hotelName == null) {
-                view.forward(request, response);
         
-            } else {
-                hs.createRecord(hotelName, street, city, state);
-                view.forward(request, response);
+        HotelService hs = new HotelService(new HotelDAO());
+        List<Hotel> list = null;
+        
+        // View All
+        if (list == null) {
+            try {
+                list = new ArrayList<>(hs.findAllHotels());
+                request.setAttribute("list", list);
+            } catch (Exception ex) {
+                ex.getLocalizedMessage();
             }
-
-        } catch (Exception ex) {
-            ex.getLocalizedMessage();
+        }
+        // Delete
+        String enteredBtn = request.getParameter("id");
+        if (enteredBtn != null) {
+            try {
+                hs.deleteRecord(enteredBtn);
+            } catch (Exception e) {
+                e.getLocalizedMessage();
+            }
         }
 
+        // Edit
+        String column = request.getParameter("column");
+        String primaryKey = request.getParameter("primary_key");
+        String value = request.getParameter("value");
+        if (column != null || primaryKey != null || value != null) {
+            try {
+                hs.editRecord(column, value, primaryKey);
+            } catch (Exception e) {
+                e.getLocalizedMessage();
+            }
+        }
 
+        // Create
+        String name = request.getParameter("hotel_name");
+        String street = request.getParameter("street");
+        String city = request.getParameter("city");
+        String state = request.getParameter("state");
+        if (name != null || street != null || city != null || state != null) {
+            try {
+                hs.createRecord(name, street, city, state);
+            } catch (Exception e) {
+                e.getLocalizedMessage();
+            }
+        }
+
+        //Search Wizard
+        String hotelName = request.getParameter("searchByName");
+        if (hotelName != null) {
+            try {
+                list = new ArrayList<>(hs.getHotelsByName(hotelName));
+                request.setAttribute("list", list);
+            } catch (Exception e) {
+                e.getLocalizedMessage();
+            }
+        }
+
+        String hotelCity = request.getParameter("searchByCtiy");
+        if (hotelCity != null) {
+            try {
+                list = new ArrayList<>(hs.getHotelsByCity(hotelCity));
+                request.setAttribute("list", list);
+            } catch (Exception e){
+                e.getLocalizedMessage();
+            }
+        }    
+        
+        String hotelState = request.getParameter("searchByState");
+        if(hotelState != null){
+            try{
+                list = new ArrayList<>(hs.getHotelsByState(hotelState));
+                request.setAttribute("list", list);
+            } catch (Exception e){
+                e.getLocalizedMessage();
+            }
+        }
+        
+        RequestDispatcher view
+                = request.getRequestDispatcher(response.encodeURL(RESULT_PAGE));
+        view.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

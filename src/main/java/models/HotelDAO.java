@@ -58,7 +58,7 @@ public class HotelDAO implements I_HotelDAO{
         }
         
         List list = null;
-        String hotelNameConstraint = "WHERE hotel_name='"+name+"';";
+        String hotelNameConstraint = " WHERE hotel_name='"+name+"';";
            list = getRecords(SELECT_ALL_QUERY + hotelNameConstraint);
         return list;
     }
@@ -71,8 +71,8 @@ public class HotelDAO implements I_HotelDAO{
         }
         
         List list = null;
-        String hotelCityConstraint = "WHERE hotel_name='"+city+"';";
-           list = getRecords(SELECT_ALL_QUERY + hotelCityConstraint);
+        String hotelByCityQuery = SELECT_ALL_QUERY + " WHERE city='"+city+"';";
+           list = getRecords(hotelByCityQuery);
         return list;
     }
     
@@ -84,7 +84,7 @@ public class HotelDAO implements I_HotelDAO{
         }
         
         List list = null;
-        String hotelStreetConstraint = "WHERE hotel_name='"+street+"';";
+        String hotelStreetConstraint = " WHERE street='"+street+"';";
            list = getRecords(SELECT_ALL_QUERY + hotelStreetConstraint);
         return list;
     }
@@ -97,7 +97,7 @@ public class HotelDAO implements I_HotelDAO{
         }
         
         List list = null;
-        String hotelStateConstraint = "WHERE hotel_name='"+state+"';";
+        String hotelStateConstraint = " WHERE state='"+state+"';";
         list = getRecords(SELECT_ALL_QUERY + hotelStateConstraint);
         return list;
     }
